@@ -1,18 +1,16 @@
 import Link from "next/link"
+import { Logo } from "@/components/ui/logo"
 
 export function Footer() {
   return (
-    <footer className="bg-neutral-950 text-neutral-400 py-16">
+    <footer className="bg-neutral-900 text-neutral-400 py-16">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="col-span-1 md:col-span-2">
-          <div className="flex items-center gap-2 mb-5">
-            <div className="w-6 h-6 rounded bg-white flex items-center justify-center">
-              <span className="text-neutral-900 font-bold text-xs leading-none">P</span>
-            </div>
-            <span className="font-bold text-xl tracking-tight text-white">Passmark</span>
+          <div className="mb-5">
+            <Logo size={28} textClassName="text-white" />
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-neutral-500 mb-8">
-            The modern accreditation platform for event organizers. Issue vendor passes, manage media approvals, and streamline security — all in one place.
+            The modern accreditation platform for event organizers. Issue vendor passes, manage media approvals, and streamline security.
           </p>
           <div className="text-xs text-neutral-600">
             &copy; {new Date().getFullYear()} Passmark Platform. All rights reserved.

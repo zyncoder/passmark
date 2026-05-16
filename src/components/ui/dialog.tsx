@@ -17,15 +17,15 @@ export function Dialog({ isOpen, onClose, title, children, footer }: DialogProps
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div 
-        className="fixed inset-0 bg-neutral-900/50 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
-      <div className="relative z-50 w-full max-w-md bg-white rounded-xl shadow-lg border border-neutral-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-100">
+      <div className="relative z-50 w-full max-w-md bg-white rounded-2xl shadow-xl border border-neutral-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="flex items-center justify-between px-6 py-5 border-b border-neutral-100">
           <h2 className="text-lg font-semibold text-neutral-900">{title}</h2>
           <button 
             onClick={onClose}
-            className="text-neutral-400 hover:text-neutral-600 transition-colors"
+            className="text-neutral-400 hover:text-neutral-600 transition-colors rounded-lg hover:bg-neutral-100 p-1"
           >
             <X className="w-5 h-5" />
           </button>

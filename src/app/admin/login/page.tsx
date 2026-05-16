@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Logo } from "@/components/ui/logo"
 import { createClient } from "@/utils/supabase/client"
 import { useToast } from "@/hooks/use-toast"
 
@@ -31,38 +32,37 @@ export default function AdminLoginPage() {
 
   const onSubmit = async (data: LoginFormValues) => {
     setIsLoading(true)
-    const { error } = await supabase.auth.signInWithPassword({
-      email: data.email,
-      password: data.password,
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: data.email, password: data.password }),
     })
-
-    if (error) {
-      addToast(error.message, "error")
+    const result = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      addToast(result.error || "Login failed", "error")
       setIsLoading(false)
       return
     }
-
-    // Verify admin role
     const { data: { user } } = await supabase.auth.getUser()
     if (user) {
-      const { data: adminData } = await supabase.from('admins').select('id').eq('id', user.id).single()
+      const { data: adminData } = await supabase.from("admins").select("id").eq("id", user.id).maybeSingle()
       if (adminData) {
         router.push("/admin/dashboard")
         router.refresh()
-      } else {
-        await supabase.auth.signOut()
-        addToast("Unauthorized: Admins only", "error")
-        setIsLoading(false)
+        return
       }
+      await supabase.auth.signOut()
+      addToast("Unauthorized: Admins only", "error")
+      setIsLoading(false)
     }
   }
 
   return (
     <div className="flex min-h-screen bg-neutral-50 items-center justify-center p-4">
       <div className="w-full max-w-md space-y-8 bg-white p-8 rounded-2xl shadow-sm border border-neutral-100">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight text-brand text-center">Passmark Admin</h1>
-          <p className="mt-2 text-[14px] text-neutral-600 text-center">
+        <div className="flex flex-col items-center gap-3">
+          <Logo size={40} />
+          <p className="text-[14px] text-neutral-500">
             Sign in to access the control panel.
           </p>
         </div>

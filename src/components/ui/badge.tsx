@@ -8,11 +8,11 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const statusConfig: Record<BadgeStatus, { label: string; className: string }> = {
-  DRAFT: { label: 'Draft', className: 'bg-[#F3F4F6] text-[#6B7280]' },
-  SUBMITTED: { label: 'Submitted', className: 'bg-[#EEF2FF] text-brand' },
-  UNDER_REVIEW: { label: 'Under Review', className: 'bg-[#FEF3C7] text-[#92400E]' },
-  APPROVED: { label: 'Approved', className: 'bg-[#DCFCE7] text-success' },
-  REJECTED: { label: 'Rejected', className: 'bg-[#FEE2E2] text-danger' },
+  DRAFT: { label: 'Draft', className: 'bg-neutral-100 text-neutral-600' },
+  SUBMITTED: { label: 'Submitted', className: 'bg-brand-light text-brand' },
+  UNDER_REVIEW: { label: 'Under Review', className: 'bg-amber-50 text-amber-700' },
+  APPROVED: { label: 'Approved', className: 'bg-green-50 text-green-700' },
+  REJECTED: { label: 'Rejected', className: 'bg-red-50 text-red-700' },
 };
 
 function Badge({ className, status, ...props }: BadgeProps) {

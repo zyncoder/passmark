@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Disallow: /dashboard
+Disallow: /form
+Disallow: /profile
+Disallow: /register
+Disallow: /admin
+Disallow: /api
+
+Sitemap: https://passmark.in/sitemap.xml

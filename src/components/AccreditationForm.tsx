@@ -14,6 +14,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Dialog } from "@/components/ui/dialog"
 import { createClient } from "@/utils/supabase/client"
 import { useToast } from "@/hooks/use-toast"
+import { enqueuePending } from "@/lib/vendor-outbox"
 
 const idTypeOptions = [
   { value: "AADHAAR", label: "Aadhaar Card" },
@@ -189,7 +190,26 @@ export function AccreditationForm({ applicationId, isReadOnly = false }: Props) 
 
     setIsSubmitting(true)
     try {
-      await saveApplication(data, 'SUBMITTED')
+      // Save as DRAFT first so the application row exists even if the submit
+      // round-trip fails offline. Then attempt to finalise on the server.
+      const id = await saveApplication(data, 'DRAFT')
+      if (!id) throw new Error("Save failed")
+
+      try {
+        const res = await fetch(`/api/vendor/applications/${id}/submit`, { method: "POST" })
+        if (!res.ok) throw new Error((await res.json().catch(() => ({})))?.error || "submit failed")
+      } catch (err) {
+        // Network down or server errored — queue the submission and tell
+        // the SW to retry it via Background Sync.
+        await enqueuePending(id)
+        try {
+          const reg = await navigator.serviceWorker?.ready
+          const sync = (reg as unknown as { sync?: { register(tag: string): Promise<void> } })?.sync
+          if (sync) await sync.register("passmark-form-sync")
+        } catch {}
+        addToast("Queued — will submit when online", "success")
+      }
+
       setShowPrompt(true)
     } catch (e: any) {
       addToast(e.message || "Failed to submit application", "error")

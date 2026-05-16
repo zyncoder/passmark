@@ -139,7 +139,7 @@ export default function RegisterPage() {
               <CardContent className="p-6 space-y-4">
                 <div className="flex flex-col gap-1">
                   <label className="text-[13px] font-medium text-neutral-900">Organisation Name</label>
-                  <div className="inline-flex items-center px-3 py-1.5 rounded-md bg-brand-light text-brand text-[14px] font-medium w-fit border border-blue-200">
+                  <div className="inline-flex items-center px-3 py-1.5 rounded-md bg-brand-light text-brand text-[14px] font-medium w-fit border border-neutral-200">
                     {profile.org_name}
                   </div>
                 </div>
@@ -213,7 +213,7 @@ export default function RegisterPage() {
 
                 <div className="flex flex-col gap-1">
                   <label className="text-[13px] font-medium text-neutral-900">Designation</label>
-                  <div className="inline-flex items-center px-3 py-1.5 rounded-md bg-brand-light text-brand text-[14px] font-medium w-fit border border-blue-200">
+                  <div className="inline-flex items-center px-3 py-1.5 rounded-md bg-brand-light text-brand text-[14px] font-medium w-fit border border-neutral-200">
                     {profile.designation || "Not specified"}
                   </div>
                 </div>

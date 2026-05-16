@@ -3,6 +3,7 @@ import { Hero } from "@/components/marketing/Hero"
 import { FeatureStrip } from "@/components/marketing/FeatureStrip"
 import { Features } from "@/components/marketing/Features"
 import { HowItWorks } from "@/components/marketing/HowItWorks"
+import { Pricing } from "@/components/marketing/Pricing"
 import { Footer } from "@/components/marketing/Footer"
 
 export default function LandingPage() {
@@ -14,6 +15,7 @@ export default function LandingPage() {
         <FeatureStrip />
         <Features />
         <HowItWorks />
+        <Pricing />
       </main>
       <Footer />
     </div>

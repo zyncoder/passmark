@@ -15,7 +15,7 @@ const features = [
     icon: <ShieldCheck className="w-5 h-5" />,
     title: "Secure Verification",
     description: "Built-in ID uploads and strict validation rules ensure only authenticated personnel receive event access.",
-    color: "text-blue-600 bg-blue-50 border-blue-100"
+    color: "text-brand bg-brand-light border-brand-light"
   },
   {
     icon: <Users className="w-5 h-5" />,
@@ -71,13 +71,13 @@ export function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="group relative p-8 rounded-2xl border border-neutral-100 bg-[#FAFAFA] hover:bg-white hover:border-neutral-200 hover:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.08)] transition-all duration-300 cursor-default"
+              className="group relative p-8 rounded-2xl border border-neutral-100 bg-neutral-50 hover:bg-white hover:border-neutral-200 hover:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.06)] transition-all duration-300 cursor-default"
             >
               <div className="flex items-start justify-between mb-5">
                 <div className={`w-10 h-10 rounded-xl border flex items-center justify-center ${feature.color}`}>
                   {feature.icon}
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-neutral-300 group-hover:text-neutral-400 transition-colors" />
+                <ArrowUpRight className="w-4 h-4 text-neutral-200 group-hover:text-neutral-400 transition-colors" />
               </div>
               <h3 className="text-lg font-semibold text-neutral-900 mb-2">{feature.title}</h3>
               <p className="text-[15px] text-neutral-500 leading-relaxed">{feature.description}</p>

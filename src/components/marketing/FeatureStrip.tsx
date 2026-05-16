@@ -26,7 +26,7 @@ export function FeatureStrip() {
               transition={{ duration: 0.35, delay: i * 0.06 }}
               className="flex flex-col items-center text-center py-8 px-4 group cursor-default hover:bg-neutral-50/60 transition-colors"
             >
-              <div className="text-neutral-300 group-hover:text-neutral-600 transition-colors mb-3">
+              <div className="text-neutral-300 group-hover:text-brand transition-colors mb-3">
                 {f.icon}
               </div>
               <div className="flex items-center gap-1.5 mb-1">
