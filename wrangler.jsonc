@@ -1,0 +1,42 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "passmark",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-05-01",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+    "run_worker_first": false
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  /**
+   * Plaintext build-time vars. These are also baked into the bundle via
+   * NEXT_PUBLIC_* at `opennextjs-cloudflare build` time — set them in the
+   * Cloudflare dashboard "Build environment variables" too if you build on
+   * Cloudflare CI. The values below are placeholders for `wrangler dev`.
+   */
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://passmark.in",
+    "VAPID_SUBJECT": "mailto:ops@passmark.in"
+  }
+  /**
+   * Secrets — DO NOT commit. Set via:
+   *
+   *   wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+   *   wrangler secret put PASSMARK_QR_HMAC_SECRET
+   *   wrangler secret put VAPID_PRIVATE_KEY
+   *   wrangler secret put NEXT_PUBLIC_SUPABASE_URL
+   *   wrangler secret put NEXT_PUBLIC_SUPABASE_ANON_KEY
+   *   wrangler secret put NEXT_PUBLIC_VAPID_PUBLIC_KEY
+   *
+   * NEXT_PUBLIC_* must also be present at *build* time (they are inlined
+   * into the client bundle). Set them in your CI build environment.
+   */
+}
