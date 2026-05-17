@@ -43,7 +43,7 @@ export default function AdminReportsPage() {
         .sort((a, b) => b.submitted - a.submitted)
         .slice(0, 10)
 
-      const approved = (apps ?? []).filter((a) => a.status === "APPROVED").length
+      const approved = (apps ?? []).filter((a: { status: string }) => a.status === "APPROVED").length
       const total = (apps ?? []).length || 1
       const approvalRate = Math.round((approved / total) * 1000) / 10
 
